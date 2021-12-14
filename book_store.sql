@@ -1,91 +1,50 @@
--- Show Database --
 SHOW DATABASES;
 
--- Create Database --
 CREATE DATABASE bookstore;
 
--- Using Database --
+SHOW TABLE bookstore;
+
 USE bookstore;
 
--- Show Tables --
-SHOW Tables;
+SHOW TABLES;
 
--- Create Table --
-CREATE TABLE books
-(
+CREATE TABLE books(
     id INT AUTO_INCREMENT PRIMARY KEY,
     author1 VARCHAR(100) NOT NULL,
     author2 VARCHAR(100),
-    author3 VARCHAR(100),
+    author3 VARCHAR(1000,
     title VARCHAR(100),
-    description TEXT,
+    description VARCHAR,
     place_sell CHAR(3),
-    stock INT DEFAULT(0),
-    creation_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
-);
-
--- Add New Column --
-ALTER TABLE books
-ADD price INT DEFAULT(0),
-    status ENUM('available', 'out of stock', 'limited');
-
--- Delete Column --
-ALTER TABLE books
-DROP COLUMN place_sell;
-
--- Insert Data --
-INSERT INTO books (author1, author2, author3, title, description, stock, price, status)
-    VALUES 
-    (
-        'Madun', 'Bapaknya Madun', 'Musuhnya Madun', 'Tendangan Si Madun', 'Tendangan Madun Season Pertama',
-        10, 90000, 'limited'
-    ), 
-    (
-        'Harry Puter', 'Bapak Heri', 'Temen Bapak Heri', 'Jeli Puter', 'Jeli-jelian',
-        20, 100000, 'limited'
-    ),
-    (
-        'Joko', 'Asep', 'Ujang', '3 Sekawan', 'kawan tapi sekarang musuhan',
-        50, 90000, 'limited'
-    );
-
--- Select All Books --
-SELECT * from books;
-
--- Select Alias on table books --
-SELECT id AS ID, author1 AS A1, author2 AS A2, author3 AS A3 from books;
-
--- Select with Where -- 
-SELECT * FROM books WHERE id = 1;
-
--- Select with Where combined AND --
-SELECT * FROM books WHERE stock < 20 AND price < 100000;
-
--- Select with Where combined OR --
-SELECT * FROM books WHERE id = 1 OR id = 2;
-
--- Select with Where combined NOT --
-SELECT * FROM books WHERE NOT id = 1;
-
--- Select ASC --
-SELECT * FROM books ORDER BY id ASC;
-
--- Select LIMIT 2 --
-SELECT * FROM books LIMIT 2;
-
--- Select Update --
-UPDATE books
-SET author1 = 'KOKO' price = 20000
-WHERE id = 2;
-
--- Delete Row -- 
-DELETE FROM books
-WHERE id = 3;
-
-
-
-
-
-
-
-
+    stock int DEFAULT 0,
+    creation_date DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    ;)
+    
+    ALTER TABLES books ADD price INT DEFAULT 0
+    ALTER TABLES books ADD status ENUM 'available' 'out of stock' 'limited'
+    ALTER TABLES books DROP place_sell;
+    
+    INSERT INTO books ( author1, author2, author3, title, description, status, price, stock)
+    VALUES ('Udin', 'Butet', 'Pipik', 'Dragon-Slayer', 'A Clanky Party that Slays the Wormy', 'Available', 9999, 10),
+      		('Fulan', 'Fulana', 'Gulup', 'Ada Apa dengan Isekai?', 'Perjalanan Gulup Ke Isekai', 'Limited', 10, 999),
+    		('Blecki', 'Snowy', 'reini', 'Magic Pet', 'Gave us Treats, We Clear your Threats', 'out of stock', 5999,0);
+    
+    SELECT * FROM books;
+    SELECT id AS ID,author1 AS A1,author2 AS A2,author3 AS A3;
+    SELECT * FROM books WHERE id = 2;
+    SELECT * FROM books WHERE stock > 2 AND price > 1000;
+    SELECT * FROM books WHERE price > 1000 OR price < 20000;
+    SELECT * FROM books WHERE NOT id = 0;
+    SELECT * FROM books ORDER BY id ASC;
+    SELECT * FROM books LIMIT 2;
+    UPDATE books SET author1 = 'BUTET' price = 5500 WHERE id = 4;
+    DELETE FROM books books WHERE id = 3;
+ 
+    
+    
+    
+    
+    
+    
+    
+    
